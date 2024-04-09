@@ -1,6 +1,7 @@
 import type { Preview } from '@storybook/react';
 
 import '@/styles/globals.css';
+import { withFontLoaded } from './decorators';
 
 const preview: Preview = {
 	parameters: {
@@ -19,6 +20,7 @@ const preview: Preview = {
 			},
 		},
 	},
+	decorators: [withFontLoaded],
 };
 
 export default preview;
