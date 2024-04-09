@@ -49,6 +49,9 @@ devDependencies:
   '@storybook/test':
     specifier: ^8.0.6
     version: 8.0.6
+  '@total-typescript/ts-reset':
+    specifier: ^0.5.1
+    version: 0.5.1
   '@types/node':
     specifier: ^20
     version: 20.12.6
@@ -3130,6 +3133,10 @@ packages:
       '@testing-library/dom': '>=7.21.4'
     dependencies:
       '@testing-library/dom': 9.3.4
+    dev: true
+
+  /@total-typescript/ts-reset@0.5.1:
+    resolution: {integrity: sha512-AqlrT8YA1o7Ff5wPfMOL0pvL+1X+sw60NN6CcOCqs658emD6RfiXhF7Gu9QcfKBH7ELY2nInLhKSCWVoNL70MQ==}
     dev: true
 
   /@types/aria-query@5.0.4:
