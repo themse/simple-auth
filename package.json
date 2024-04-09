@@ -8,7 +8,9 @@
 		"start": "next start",
 		"lint": "next lint --fix",
 		"prettier": "prettier . --write",
-		"format": "pnpm run lint && pnpm run prettier"
+		"format": "pnpm run lint && pnpm run prettier",
+		"type:check": "tsc --pretty --noEmit",
+		"prepare": "husky install"
 	},
 	"dependencies": {
 		"next": "14.1.4",
@@ -23,6 +25,7 @@
 		"eslint": "^8",
 		"eslint-config-next": "14.1.4",
 		"eslint-config-prettier": "^9.1.0",
+		"husky": "^9.0.11",
 		"postcss": "^8",
 		"prettier": "^3.2.5",
 		"prettier-plugin-tailwindcss": "^0.5.13",
