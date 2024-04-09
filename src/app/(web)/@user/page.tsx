@@ -4,11 +4,11 @@ import { PageProps } from '@/types/app';
 import { Container } from '@/ui/components/templates/Container';
 import { Heading } from '@/ui/components/atoms/Heading';
 
-export default function Home({}: PageProps) {
+export default function User({}: PageProps) {
 	return (
 		<Container>
 			<Heading variant="heading-1" as="h1">
-				Home page
+				User page
 			</Heading>
 		</Container>
 	);
