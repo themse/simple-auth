@@ -12,17 +12,17 @@ export default function Guest({}: PageProps) {
 		<Container>
 			<TemplateBodyCenter
 				header={
-					<Heading variant="heading-1" as="h1" className="py-5 text-center">
+					<Heading variant="heading-1" as="h1" weight="medium" className="py-5 text-center">
 						Welcome
 					</Heading>
 				}
 				contentStyles="max-w-64 gap-y-16"
 			>
 				<Button size="lg" className="justify-center" asChild>
-					<Link href="/sign-in">Sign up</Link>
+					<Link href="/sign-up">Sign up</Link>
 				</Button>
 				<Button size="lg" className="justify-center" asChild>
-					<Link href="/sign-up">Login in</Link>
+					<Link href="/sign-in">Login in</Link>
 				</Button>
 			</TemplateBodyCenter>
 		</Container>
