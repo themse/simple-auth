@@ -14,6 +14,18 @@
 
 Run the project using the following steps:
 
+- Copy file with environment variables and fill necessary one
+
+```sh
+cp .env.sample .env.local
+```
+
+- Generate `AUTH_SECRET` with command:
+  
+```sh
+openssl rand -base64 32
+```
+
 - Install all dependencies
 
 ```sh
