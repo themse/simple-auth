@@ -11,6 +11,7 @@ const buttonVariants = tv({
 		},
 		size: {
 			default: 'px-4 py-2',
+			lg: 'h-11 px-8 text-base',
 		},
 	},
 	defaultVariants: {

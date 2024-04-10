@@ -7,7 +7,6 @@ const meta = {
 	title: 'UI/Atoms/Button',
 	component: Button,
 	args: {
-		children: 'Button Example',
 		onClick: fn(),
 	},
 	tags: ['autodocs'],
@@ -15,9 +14,21 @@ const meta = {
 
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {};
+const Template: Story['render'] = (args) => (
+	<div className="flex flex-col gap-3">
+		<Button {...args}>Size: Default</Button>
+		<Button {...args} size="lg">
+			Size: Lg
+		</Button>
+	</div>
+);
+
+export const Default: Story = {
+	render: Template,
+};
 
 export const Disabled: Story = {
+	render: Template,
 	args: {
 		disabled: true,
 	},

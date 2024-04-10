@@ -1,0 +1,1 @@
+export { TemplateBodyCenter } from './BodyCenter';

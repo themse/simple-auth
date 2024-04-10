@@ -11,7 +11,7 @@ type ParallelRoutes = {
 };
 
 export default function WebLayout({ guest, user }: LayoutProps<Params, ParallelRoutes>) {
-	const isLoggedIn = true; // TODO implement
+	const isLoggedIn = false; // TODO implement
 	const page = isLoggedIn ? user : guest;
 
 	return <TemplateScaffold>{page}</TemplateScaffold>;
