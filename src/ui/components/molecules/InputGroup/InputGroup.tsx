@@ -1,11 +1,13 @@
 import { ComponentPropsWithoutRef } from 'react';
 import { tv, type VariantProps } from 'tailwind-variants';
 
+import { HelperText } from '@/ui/components/atoms/HelperText';
+
 const inputGroupVariants = tv({
 	slots: {
 		wrapper: 'flex flex-col gap-y-2',
 		inputGroup: 'flex gap-x-3 gap-y-4',
-		errors: 'text-sm text-red-500',
+		errors: '',
 	},
 	variants: {
 		orientation: {
@@ -37,12 +39,17 @@ export const InputGroup = ({
 	hideError = false,
 	...props
 }: Props) => {
-	const { wrapper, inputGroup, errors } = inputGroupVariants({ orientation, className });
+	const variants = inputGroupVariants({ orientation, className });
 
 	return (
-		<div className={wrapper()} {...props}>
-			<div className={inputGroup()}>{children}</div>
-			{!hideError && <div className={errors()}>{errorMessage}</div>}
+		<div className={variants.wrapper()} {...props}>
+			<div className={variants.inputGroup()}>{children}</div>
+
+			{!hideError && (
+				<HelperText variant="error" className={variants.errors()}>
+					{errorMessage}
+				</HelperText>
+			)}
 		</div>
 	);
 };

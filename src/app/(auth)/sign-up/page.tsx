@@ -1,12 +1,12 @@
 import 'server-only';
+import Link from 'next/link';
 
 import { Container } from '@/ui/components/templates/Container';
 import { TemplateBodyCenter } from '@/ui/components/templates/BodyCenter';
 import { Heading } from '@/ui/components/atoms/Heading';
-import { Input } from '@/ui/components/atoms/Input';
-import { Label } from '@/ui/components/atoms/Label';
-import { InputGroup } from '@/ui/components/molecules/InputGroup';
+import { SignUpForm } from '@/ui/components/organisms/SignUpForm';
 import { Button } from '@/ui/components/atoms/Button';
+import { HelperText } from '@/ui/components/atoms/HelperText';
 
 export default function SignUp() {
 	return (
@@ -17,25 +17,16 @@ export default function SignUp() {
 						Sign up
 					</Heading>
 				}
-				contentStyles="gap-y-20 max-w-80"
+				contentStyles="max-w-80"
 			>
-				<div className="flex flex-col gap-y-8">
-					<InputGroup>
-						<Label>Email</Label>
-						<Input placeholder="Type in your email" />
-					</InputGroup>
-					<InputGroup>
-						<Label>Re-enter your email</Label>
-						<Input placeholder="Confirm your email" />
-					</InputGroup>
-					<InputGroup>
-						<Label>Password</Label>
-						<Input placeholder="Type in your password" />
-					</InputGroup>
-				</div>
-				<Button size="lg" className="mx-auto w-full max-w-56 justify-center">
-					Sign up
-				</Button>
+				<SignUpForm />
+
+				<HelperText className="my-8 text-center">
+					Have an account?{' '}
+					<Button variant="link" asChild className="inline-flex p-0">
+						<Link href="/sign-in">Sign In Now</Link>
+					</Button>
+				</HelperText>
 			</TemplateBodyCenter>
 		</Container>
 	);

@@ -8,7 +8,7 @@ const buttonVariants = tv({
 	variants: {
 		variant: {
 			default: 'bg-blue-500 text-white',
-			link: 'bg-transparent text-black underline-offset-4 hover:underline shadow-none',
+			link: 'bg-transparent text-black underline-offset-4 shadow-none hover:underline',
 		},
 		size: {
 			default: 'px-4 py-2',
