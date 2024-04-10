@@ -5,6 +5,10 @@
 - Front Page
 
 - UI-kit
+  
+## Documentation
+
+- [Commit rules](./docs/commitlint.md)
 
 ## Getting Started
 
