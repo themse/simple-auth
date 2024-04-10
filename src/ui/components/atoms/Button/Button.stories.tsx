@@ -15,7 +15,7 @@ const meta = {
 type Story = StoryObj<typeof meta>;
 
 const Template: Story['render'] = (args) => (
-	<div className="flex flex-col gap-3">
+	<div className="flex gap-x-2">
 		<Button {...args}>Size: Default</Button>
 		<Button {...args} size="lg">
 			Size: Lg
@@ -27,11 +27,25 @@ export const Default: Story = {
 	render: Template,
 };
 
-export const Disabled: Story = {
+export const Link: Story = {
+	args: {
+		variant: 'link',
+	},
 	render: Template,
+};
+
+export const Disabled: Story = {
 	args: {
 		disabled: true,
 	},
+	render: (args) => (
+		<div className="flex gap-x-2">
+			<Button {...args}>Default</Button>
+			<Button {...args} variant="link">
+				Link
+			</Button>
+		</div>
+	),
 };
 
 export default meta;
