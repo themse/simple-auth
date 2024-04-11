@@ -1,6 +1,6 @@
 import { type NextRequest, NextResponse } from 'next/server';
 
-import { wait } from '@/utils/wait';
+import { wait } from '@/utils/helpers/wait';
 import { schema } from '@/ui/components/organisms/SignUpForm/schema';
 import { AuthResponse, SignUpData } from '@/types/auth';
 import { User } from '@/types/user';

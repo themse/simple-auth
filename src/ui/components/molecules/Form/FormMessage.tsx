@@ -3,7 +3,7 @@ import { tv } from 'tailwind-variants';
 
 import { HelperText } from '@/ui/components/atoms/HelperText';
 import { useFormField } from './hooks';
-import { getErrorMessage } from '@/utils/getErrorMessage';
+import { getErrorMessage } from '@/utils/helpers/getErrorMessage';
 
 const formMessageVariants = tv({
 	base: '',
