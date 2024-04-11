@@ -9,3 +9,9 @@ export const signUpAction = async (values: FormValues) => {
 
 	return data;
 };
+
+export const checkDomainAction = async (email: string) => {
+	const data = await ExternalApi.checkDomain(email);
+
+	return data;
+};

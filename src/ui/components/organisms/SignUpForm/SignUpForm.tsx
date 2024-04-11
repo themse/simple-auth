@@ -1,7 +1,9 @@
 'use client';
 
+import { useCallback } from 'react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
+import debounce from 'lodash.debounce';
 
 import { Input } from '@/ui/components/atoms/Input';
 import { Button } from '@/ui/components/atoms/Button';
@@ -15,7 +17,7 @@ import {
 	FormMessage,
 } from '@/ui/components/molecules/Form';
 import { schema, FormValues } from './schema';
-import { signUpAction } from './action';
+import { checkDomainAction, signUpAction } from './action';
 
 export const SignUpForm = () => {
 	const form = useForm<FormValues>({
@@ -41,6 +43,20 @@ export const SignUpForm = () => {
 		}
 	};
 
+	const validateEmailDomain = useCallback(
+		debounce((email) => {
+			checkDomainAction(email).then((response) => {
+				if (response.error) {
+					form.setError('email', {
+						type: 'custom',
+						message: 'Email domain is forbidden',
+					});
+				}
+			});
+		}, 2000),
+		[],
+	);
+
 	return (
 		<Form {...form}>
 			<form className="flex flex-col gap-y-20" onSubmit={form.handleSubmit(onSubmit)}>
@@ -52,7 +68,16 @@ export const SignUpForm = () => {
 							<FormItem>
 								<FormLabel className="mb-1">Email</FormLabel>
 								<FormControl>
-									<Input placeholder="Type in your email" {...field} />
+									<Input
+										{...field}
+										placeholder="Type in your email"
+										onChange={(event) => {
+											form.resetField(field.name);
+
+											validateEmailDomain(event.target.value);
+											field.onChange(event);
+										}}
+									/>
 								</FormControl>
 								<FormMessage />
 							</FormItem>

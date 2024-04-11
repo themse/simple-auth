@@ -35,3 +35,17 @@ export const signUp = async (dto: SignUpData) => {
 
 	return data;
 };
+
+export const checkDomain = async (email: string) => {
+	const response = await fetch(`${API_BASE_URL}/check-domain`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ email }),
+	});
+
+	const data = (await response.json()) as AuthResponse<{ isAllowed: boolean }, { email: string }>;
+
+	return data;
+};
