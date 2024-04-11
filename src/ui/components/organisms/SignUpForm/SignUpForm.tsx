@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 
 import { Input } from '@/ui/components/atoms/Input';
 import { Button } from '@/ui/components/atoms/Button';
+import { HelperText } from '@/ui/components/atoms/HelperText';
 import {
 	Form,
 	FormField,
@@ -14,6 +15,7 @@ import {
 	FormMessage,
 } from '@/ui/components/molecules/Form';
 import { schema, FormValues } from './schema';
+import { signUpAction } from './action';
 
 export const SignUpForm = () => {
 	const form = useForm<FormValues>({
@@ -24,10 +26,19 @@ export const SignUpForm = () => {
 			confirmEmail: '',
 		},
 	});
+	const {
+		formState: { errors },
+	} = form;
 
-	const onSubmit = (data: FormValues) => {
-		// TODO implement
-		console.log(data);
+	const onSubmit = async (data: FormValues) => {
+		const response = await signUpAction(data);
+
+		if (response.error) {
+			form.setError('root.serverError', {
+				type: '400',
+				message: response.message,
+			});
+		}
 	};
 
 	return (
@@ -78,6 +89,12 @@ export const SignUpForm = () => {
 					Sign up
 				</Button>
 			</form>
+			{errors.root?.['serverError'] && (
+				<HelperText className="my-4 text-center" variant="error">
+					<b>Server Error: </b>
+					{errors.root?.['serverError'].message}
+				</HelperText>
+			)}
 		</Form>
 	);
 };

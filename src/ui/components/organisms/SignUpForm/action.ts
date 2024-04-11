@@ -6,4 +6,6 @@ import { FormValues } from './schema';
 export const signUpAction = async (values: FormValues) => {
 	// TODO temporary solution
 	const data = await ExternalApi.signUp(values);
+
+	return data;
 };
