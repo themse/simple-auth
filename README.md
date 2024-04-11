@@ -2,9 +2,9 @@
 
 ## Applications
 
-- Front Page
+- Front Page [view](https://simple-auth-smoky.vercel.app/)
 
-- UI-kit
+- UI-kit [view](https://simple-auth-storybook.vercel.app/)
   
 - Mocked Server (Demo solution)
   
