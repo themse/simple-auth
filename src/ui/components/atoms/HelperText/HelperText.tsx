@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react';
+import { ComponentPropsWithoutRef } from 'react';
 import { tv, VariantProps } from 'tailwind-variants';
 
 const helperTextVariants = tv({
@@ -14,11 +14,12 @@ const helperTextVariants = tv({
 	},
 });
 
-type Props = PropsWithChildren<{
-	className?: string;
-}> &
-	VariantProps<typeof helperTextVariants>;
+type Props = ComponentPropsWithoutRef<'p'> & VariantProps<typeof helperTextVariants>;
 
-export const HelperText = ({ children, className, variant }: Props) => {
-	return <p className={helperTextVariants({ className, variant })}>{children}</p>;
+export const HelperText = ({ children, className, variant, ...props }: Props) => {
+	return (
+		<p className={helperTextVariants({ className, variant })} {...props}>
+			{children}
+		</p>
+	);
 };
