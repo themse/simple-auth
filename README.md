@@ -6,6 +6,8 @@
 
 - UI-kit
   
+- Mocked Server (Demo solution)
+  
 ## Documentation
 
 - [Commit rules](./docs/commitlint.md)
