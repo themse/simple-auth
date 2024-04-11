@@ -11,6 +11,9 @@ export const schema = signInSchema
 			})
 			.trim(),
 	})
-	.refine((ctx) => ctx.email === ctx.confirmEmail, "Your emails don't match");
+	.refine((ctx) => ctx.email === ctx.confirmEmail, {
+		message: "Your emails don't match",
+		path: ['confirmEmail'],
+	});
 
 export type FormValues = z.infer<typeof schema>;
