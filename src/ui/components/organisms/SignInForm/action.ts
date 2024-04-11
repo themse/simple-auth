@@ -3,13 +3,17 @@
 import * as ExternalApi from '@/services/api/external-api';
 import { AuthResponse, SignInData } from '@/types/auth';
 import { User } from '@/types/user';
+import * as auth from '@/services/libs/auth';
 
 export const signInAction = async (
 	_prevState: AuthResponse<User, SignInData>,
 	formData: FormData,
 ) => {
-	// TODO temporary solution
-	const data = await ExternalApi.signIn(formData);
+	const response = await ExternalApi.signIn(formData);
 
-	return data;
+	if (!response.error && response.data) {
+		await auth.login(response.data);
+	}
+
+	return response;
 };

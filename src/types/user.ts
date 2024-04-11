@@ -1,5 +1,3 @@
-import { User as AuthUser } from 'next-auth';
-
-export type User = AuthUser & {
+export type User = {
 	email: string;
 };

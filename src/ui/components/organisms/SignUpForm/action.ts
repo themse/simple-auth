@@ -1,13 +1,17 @@
 'use server';
 
 import * as ExternalApi from '@/services/api/external-api';
+import * as auth from '@/services/libs/auth';
 import { FormValues } from './schema';
 
 export const signUpAction = async (values: FormValues) => {
-	// TODO temporary solution
-	const data = await ExternalApi.signUp(values);
+	const response = await ExternalApi.signUp(values);
 
-	return data;
+	if (!response.error && response.data) {
+		await auth.login(response.data);
+	}
+
+	return response;
 };
 
 export const checkDomainAction = async (email: string) => {

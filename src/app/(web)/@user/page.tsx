@@ -1,19 +1,22 @@
 import 'server-only';
-import { PageProps } from '@/types/app';
+import { redirect } from 'next/navigation';
 
-import { auth, signOut } from '@/services/libs/auth';
+import { PageProps } from '@/types/app';
+import * as auth from '@/services/libs/auth';
 import { Container } from '@/ui/components/templates/Container';
 import { Heading } from '@/ui/components/atoms/Heading';
 import { Button } from '@/ui/components/atoms/Button';
 import { TemplateBodyCenter } from '@/ui/components/templates/BodyCenter';
 
 export default async function User({}: PageProps) {
-	const session = await auth();
+	const session = await auth.getSession();
 
 	async function handleSignOut() {
 		'use server';
 
-		return signOut();
+		await auth.logout();
+
+		redirect('/');
 	}
 
 	return (

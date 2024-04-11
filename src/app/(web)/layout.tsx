@@ -1,7 +1,7 @@
 import 'server-only';
 import { ReactNode } from 'react';
 
-import { auth } from '@/services/libs/auth';
+import { getSession } from '@/services/libs/auth';
 import { TemplateScaffold } from '@/ui/components/templates/Scaffold';
 import { LayoutProps } from '@/types/app';
 
@@ -12,7 +12,7 @@ type ParallelRoutes = {
 };
 
 export default async function WebLayout({ guest, user }: LayoutProps<Params, ParallelRoutes>) {
-	const session = await auth();
+	const session = await getSession();
 	const isAuthorized = Boolean(session?.user);
 
 	const page = isAuthorized ? user : guest;

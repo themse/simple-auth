@@ -1,6 +1,5 @@
 import { type NextRequest, NextResponse } from 'next/server';
 
-import { wait } from '@/utils/helpers/wait';
 import { schema } from '@/ui/components/organisms/SignInForm/schema';
 import { AuthResponse, SignInData } from '@/types/auth';
 import { User } from '@/types/user';
@@ -12,9 +11,6 @@ export async function POST(req: NextRequest) {
 	const parsed = schema.safeParse(data);
 
 	if (parsed.success) {
-		// ! simulate server delay
-		await wait(2000);
-
 		// TODO check user
 		const user = { email: parsed.data.email };
 

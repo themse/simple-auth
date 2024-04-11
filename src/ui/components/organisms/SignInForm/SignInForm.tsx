@@ -21,9 +21,13 @@ import { signInAction } from './action';
 
 export const SignInForm = () => {
 	const formRef = useRef<ElementRef<'form'>>(null);
-	const [formState, formAction] = useFormState(signInAction, {
-		message: '',
-	});
+	const [formState, formAction] = useFormState(
+		signInAction,
+		{
+			message: '',
+		},
+		'/',
+	);
 
 	const form = useForm<FormValues>({
 		resolver: zodResolver(schema),
