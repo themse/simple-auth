@@ -17,8 +17,7 @@ import {
 } from './index';
 
 const meta = {
-	title: 'UI/Organisms/Form',
-	tags: ['autodocs'],
+	title: 'UI/Molecules/Form',
 } satisfies Meta;
 
 type Story = StoryObj<typeof meta>;
@@ -46,7 +45,7 @@ const Template: Story['render'] = () => {
 					control={form.control}
 					name="username"
 					render={({ field }) => (
-						<FormItem>
+						<FormItem className="w-96">
 							<FormLabel className="mb-1">Username</FormLabel>
 							<FormControl>
 								<Input placeholder="Enter your username..." {...field} />

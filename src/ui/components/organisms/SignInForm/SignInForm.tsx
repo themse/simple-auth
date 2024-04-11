@@ -12,7 +12,7 @@ import {
 	FormLabel,
 	FormControl,
 	FormMessage,
-} from '@/ui/components/organisms/Form';
+} from '@/ui/components/molecules/Form';
 import { schema, FormValues } from './schema';
 
 export const SignInForm = () => {
