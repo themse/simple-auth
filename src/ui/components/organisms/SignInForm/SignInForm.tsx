@@ -1,10 +1,13 @@
 'use client';
 
+import { useRef, ElementRef } from 'react';
+import { useFormState } from 'react-dom';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 
 import { Button } from '@/ui/components/atoms/Button';
 import { Input } from '@/ui/components/atoms/Input';
+import { HelperText } from '@/ui/components/atoms/HelperText';
 import {
 	Form,
 	FormField,
@@ -14,8 +17,14 @@ import {
 	FormMessage,
 } from '@/ui/components/molecules/Form';
 import { schema, FormValues } from './schema';
+import { signInAction } from './action';
 
 export const SignInForm = () => {
+	const formRef = useRef<ElementRef<'form'>>(null);
+	const [formState, formAction] = useFormState(signInAction, {
+		message: '',
+	});
+
 	const form = useForm<FormValues>({
 		resolver: zodResolver(schema),
 		defaultValues: {
@@ -24,14 +33,14 @@ export const SignInForm = () => {
 		},
 	});
 
-	const onSubmit = (data: FormValues) => {
-		// TODO implement
-		console.log(data);
-	};
-
 	return (
 		<Form {...form}>
-			<form className="flex flex-col gap-y-28" onSubmit={form.handleSubmit(onSubmit)}>
+			<form
+				action={formAction}
+				className="flex flex-col gap-y-28"
+				onSubmit={form.handleSubmit(() => formRef?.current?.submit())}
+				ref={formRef}
+			>
 				<div className="flex flex-col gap-y-8">
 					<FormField
 						control={form.control}
@@ -64,6 +73,13 @@ export const SignInForm = () => {
 					Login
 				</Button>
 			</form>
+
+			{formState.error && (
+				<HelperText className="my-4 text-center" variant="error">
+					<b>Server Error: </b>
+					{formState.message}
+				</HelperText>
+			)}
 		</Form>
 	);
 };

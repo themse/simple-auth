@@ -1,9 +1,15 @@
 'use server';
 
 import * as ExternalApi from '@/services/api/external-api';
-import { FormValues } from './schema';
+import { AuthResponse, SignInData } from '@/types/auth';
+import { User } from '@/types/user';
 
-export const signInAction = async (values: FormValues) => {
+export const signInAction = async (
+	_prevState: AuthResponse<User, SignInData>,
+	formData: FormData,
+) => {
 	// TODO temporary solution
-	const data = await ExternalApi.signIn(values);
+	const data = await ExternalApi.signIn(formData);
+
+	return data;
 };
