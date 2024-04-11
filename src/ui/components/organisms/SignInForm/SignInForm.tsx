@@ -38,7 +38,12 @@ export const SignInForm = () => {
 			<form
 				action={formAction}
 				className="flex flex-col gap-y-28"
-				onSubmit={form.handleSubmit(() => formRef?.current?.submit())}
+				onSubmit={(evt) => {
+					evt.preventDefault();
+					form.handleSubmit(() => {
+						formAction(new FormData(formRef.current!));
+					})(evt);
+				}}
 				ref={formRef}
 			>
 				<div className="flex flex-col gap-y-8">
