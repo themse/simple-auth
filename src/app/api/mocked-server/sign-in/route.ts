@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
 	const parsed = schema.safeParse(data);
 
 	if (parsed.success) {
-		const user = db.users.find((item) => item.email === parsed.data.email);
+		const user = db.getUsers().find((item) => item.email === parsed.data.email);
 
 		if (!user) {
 			return NextResponse.json<AuthResponse<User, SignInData>>(
@@ -35,6 +35,7 @@ export async function POST(req: NextRequest) {
 			);
 		}
 
+		// TODO implement Adapter
 		const convertedUser: User = { email: user.email };
 
 		return NextResponse.json<AuthResponse<User, SignInData>>({
