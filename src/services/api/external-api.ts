@@ -7,17 +7,16 @@ import { User } from '@/types/user';
 
 const API_BASE_URL = `${env.NEXT_PUBLIC_BASE_URL}/api/mocked-server`;
 
-export const signIn = async (formData: FormData) => {
+export const signIn = async (formData: FormData): Promise<AuthResponse<User, SignInData>> => {
 	// * Using formdata
 
 	const response = await fetch(`${API_BASE_URL}/sign-in`, {
 		method: 'POST',
 		body: formData,
 	});
-
 	const data = (await response.json()) as AuthResponse<User, SignInData>;
 
-	return data;
+	return { ...data, statusCode: response.status };
 };
 
 export const signUp = async (dto: SignUpData) => {

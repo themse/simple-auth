@@ -6,7 +6,8 @@ import type { FormValues as SignUpData } from '@/ui/components/organisms/SignUpF
 export type AuthResponse<TData, TPayload = SignInData | SignUpData> = {
 	message: string;
 	data?: TData;
-	error?: ZodError<TPayload>;
+	error?: ZodError<TPayload> | string;
+	statusCode?: number;
 };
 
 export type { SignInData, SignUpData };

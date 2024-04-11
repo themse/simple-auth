@@ -103,7 +103,7 @@ export const SignUpForm = () => {
 							<FormItem>
 								<FormLabel className="mb-1">Password</FormLabel>
 								<FormControl>
-									<Input placeholder="Type in your password" {...field} />
+									<Input type="password" placeholder="Type in your password" {...field} />
 								</FormControl>
 								<FormMessage />
 							</FormItem>
