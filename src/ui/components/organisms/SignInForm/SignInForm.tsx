@@ -19,15 +19,13 @@ import {
 import { schema, FormValues } from './schema';
 import { signInAction } from './action';
 
+type FormState = Awaited<ReturnType<typeof signInAction>>;
+
 export const SignInForm = () => {
 	const formRef = useRef<ElementRef<'form'>>(null);
-	const [formState, formAction] = useFormState(
-		signInAction,
-		{
-			message: '',
-		},
-		'/',
-	);
+	const [formState, formAction] = useFormState<FormState, FormData>(signInAction, {
+		message: '',
+	});
 
 	const form = useForm<FormValues>({
 		resolver: zodResolver(schema),
